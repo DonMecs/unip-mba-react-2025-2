@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 02 - Estrutura Condicional: Fragments Rend</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src = "https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src = "https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Perfil({usuario}) {
+            return(
+                <div>
+                    <h1>Perfil</h1>
+                    <h4>Seja bem-vindo à tela de configuração, {usuario.nome}!</h4>
+                    {usuario.admin ? (
+                            <>
+                            <p> Admin Panel </p>
+                            <button> Advanced Configs </button>
+                            <button> Users </button>
+                            </>
+                        ) : (
+                            <>
+                            <p> User Panel </p>
+                            <button> Your Profile </button>
+                            </>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        const usuario = {nome: "Luis", admin: true}
+
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <Perfil usuario = {usuario} />    
+        );
+
+    </script>
+</body>
+</html>
