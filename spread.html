@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 03 - Spread</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src = "https://cdn.tailwindcss.com"></script>
+    <script src = "https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src = "https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const buttonState={
+            default : 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
+            primary : 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded'  
+        }
+
+        function Button({children, variant = 'default', ...props}) {
+            return(
+                <button className={buttonState[variant]} {...props}>
+                {children}
+                </button>
+            )
+        }
+        
+        function App() {
+            return(
+                <div className="text-center mt-10 space-x-4">
+                    <Button variant="primary">Btn Primary</Button>
+                    <Button title = "Title secondary">Btn Secondary</Button>
+                    <Button onClick={() => alert('Alert')}>Btn Tertiary</Button>
+                </div>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <App/>
+        );
+
+    </script>
+</body>
+</html>
