@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 03 - React.js</title>
+    <title>Aula 03 - PROPS</title>
 </head>
 <body>
     <div id="root"></div>
@@ -12,11 +12,25 @@
     <script src = "https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src = "https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script type="text/babel">
+        function Button({children, variant}) {
+            return(
+                <button className={variant === 'primary' ?
+                 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
+                : variant === 'secondary' ?
+                 'bg-gray-300 hover:bg-green-500 text-black font-bold py-2 px-4'
+                :'bg-gray-200 text-black font-bold py-2 px-4 rounded'}>
+                {children}
+                </button>
+            )
+        }
+        
         function App() {
             return(
-                <div className="text-center mt-10">
-                    <h1>Try it</h1>
+                <div className="text-center mt-10 space-x-4">
+                    <Button variant="primary">Btn Primary</Button>
+                    <Button variant="secondary">Btn Secondary</Button>
                 </div>
             )
         }
