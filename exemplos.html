@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const BotaoSemParametro = () => (
+            <div>
+                <h1>Botoes Sem Parâmetro</h1>
+                <button onClick={() => alert("Alerta na Página Sem Parâmetro")}>Alerta na Página Sem Parâmetro</button>
+                <button onClick={() => console.log("Console: ação sem parâmetro")}>Console.Log Sem Parâmetro</button>
+
+            </div>
+        );
+
+        const BotaoComParametro = () => (
+            <div>
+                <h1>Botoes Com Parâmetro</h1>
+                <button onClick={() => alert("Alerta com parâmetro: exemplo")}>Alerta na Página Com Parâmetro</button>
+                <button onClick={() => console.log("Console: ação com parâmetro exemplo")}>Console.Log Com Parâmetro</button>
+
+            </div>
+        );
+
+        const BotaoComEvento = () => (
+            <div>
+                <h1>Botoes Com Evento</h1>
+                <button onClick={(e) => console.log("Evento: ", e.type)}>Evento Tipo</button>
+                <button onClick={(e) => console.log("Evento Target: ", e.target.tagName)}>Evento Target</button>
+
+            </div>
+        );
+
+        function App() {
+            const button = document.querySelector('btn');
+
+            return (
+                <div>
+                    <h1>Exemplos de Botões</h1>
+                    <BotaoSemParametro />
+                    <BotaoComParametro />
+                    <BotaoComEvento />
+                            
+                </div>
+
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <App />
+        );
+    </script>
+
+</body>
+
+</html>
