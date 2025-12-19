@@ -393,8 +393,13 @@
         // ===== APLICAÇÃO PRINCIPAL =====
         // Aqui apenas passamos props estáticas (dados fixos) para os componentes
           function App() {
+
+            const hoje = new Date();
+            const [diaSelecionado, setDiaSelecionado] = React.useState(hoje.getDate())
+
             // useState para armazenar a lista de compromissos que pode mudar
-            const [compromissosHoje, setCompromissosHoje] = React.useState([
+                const [compromissosPorDia, setCompromissosPorDIa] = React.useState({
+                18:[
                 {
                     id: 1,
                     horario: "09:00",
@@ -413,10 +418,46 @@
                     titulo: "Aula de React",
                     descricao: "Estudar Props e Componentes"
                 }
-            ]);
+            ], 
+                19:[
+                {
+                    id: 4,
+                    horario: "10:00",
+                    titulo: "Call com Fornecedor",
+                    descricao: "Negociar prazos de entrega"
+                },
+                {
+                    id: 5,
+                    horario: "14:00",
+                    titulo: "Revisão de Código",
+                    descricao: "Analisar pull requests no GitHub"
+                }
+            ],
+                20:[
+                {
+                    id: 6,
+                    horario: "11:00",
+                    titulo: "Workshop de UI/UX",
+                    descricao: "Melhores práticas de design"
+                },
+                {
+                    id: 7,
+                    horario: "16:00",
+                    titulo: "Planejamento Semanal",
+                    descricao: "Definir tarefas para a semana"
+                }
+            ]
+            });
+
+            const [compromissosHoje, setCompromissosHoje] = React.useState([]);
+            React.useEffect(() => {
+                const compromissos = compromissosPorDia[diaSelecionado] || [];
+                setCompromissosHoje(compromissos);
+                console.log('Compromissos para o dia', diaSelecionado, ':', compromissos);
+            }, [diaSelecionado, compromissosPorDia]);
 
             // Dados fixos para exemplo
-            const hoje = new Date();
+            
             const dataFormatada = hoje.toLocaleDateString('pt-BR', {
                 weekday: 'long',
                 year: 'numeric',
@@ -424,7 +465,7 @@
                 day: 'numeric'
             });
 
-            const [diaSelecionado, setDiaSelecionado] = React.useState(hoje.getDate())
+            
 
             React.useEffect(() => {
                 document.title = `Agenda - Dia ${diaSelecionado}`;
